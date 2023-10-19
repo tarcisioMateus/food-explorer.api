@@ -34,9 +34,11 @@ class DishRepository {
     async groupDishesByCategories({ 
         categories = ['dinner', 'lunch', 'breakfast', 'dessert', 'vegetarian', 'barbecue', 'drink'] 
     }) {
-        const dishes = categories.map( category => {
-                return ({ [category]: knex('dishes').where({category}).orderBy('dishes.name') })
+        const dishes = await Promise.all( 
+            categories.map( async (category) => {
+                return ({ [category]: await knex('dishes').where({category}).orderBy('dishes.name') })
             })
+        )
         return dishes
     }
 
