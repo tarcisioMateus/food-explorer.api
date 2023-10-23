@@ -1,14 +1,14 @@
 const knex = require('../database/knex')
 
 class IngredientRepository {
-  async create({ Ingredients, dish_id }) {
-    const IngredientsInfo = Ingredients.map(ingredient => {
+  async create({ ingredients, dish_id }) {
+    const ingredientsInfo = ingredients.map(ingredient => {
       return {
         name: ingredient.trim(),
         dish_id,
       }
     })
-    await knex('ingredients').insert(IngredientsInfo)
+    await knex('ingredients').insert(ingredientsInfo)
   }
 
   async getByDishId({ dish_id }) {
