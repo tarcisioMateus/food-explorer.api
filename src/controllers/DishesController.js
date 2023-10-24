@@ -1,5 +1,7 @@
 const DishRepository = require('../repositories/DishRepository')
 const IngredientRepository = require('../repositories/IngredientRepository')
+const DiskStorage = require("../providers/DiskStorage")
+
 
 const CreateServices = require('../services/dish/CreateService')
 const IndexServices = require('../services/dish/IndexService')
@@ -63,7 +65,8 @@ class DishsController {
         const { id } = request.params
 
         const deleteServices = new DeleteServices({
-            dishRepository: new DishRepository()
+            dishRepository: new DishRepository(),
+            diskStorage: new DiskStorage()
         })
         await deleteServices.execute({ id })
 
