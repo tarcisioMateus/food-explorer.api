@@ -12,7 +12,7 @@ class IndexServices {
         let dishes
         if (ingredients) {
             dishes = await this.dishRepository.getDishesByIngredients({ 
-                ingredients: ingredients.split(',').map(ingredient => ingredient.trim()) 
+                ingredients: ingredients.split(',').map(ingredient => ingredient.trim().toLowerCase()) 
             })
         } else {
             dishes = await this.dishRepository.getDishesByname({ name }) 

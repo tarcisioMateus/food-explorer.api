@@ -8,5 +8,6 @@ const dishesRoutes = Router()
 dishesRoutes.post('/', dishesController.create)
 dishesRoutes.get('/', dishesController.index)
 dishesRoutes.get('/:id', dishesController.show)
+dishesRoutes.put('/:id', dishesController.update)
 
 module.exports = dishesRoutes

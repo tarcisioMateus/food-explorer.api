@@ -14,7 +14,7 @@ class UpdateServices {
     }) {
         inputValidation({ name, description, ingredients, price, category })
 
-        const isUpdatingIngredients = await updatingIngredients ({ 
+        const isUpdatingIngredients = await isItUpdatingIngredients ({ 
             newIngredients: ingredients, dish_id: id, ingredientRepository: this.ingredientRepository 
         })
         if (isUpdatingIngredients) {
@@ -40,13 +40,15 @@ function inputValidation ({ name, description, ingredients, price, category }) {
     }
 }
 
-async function updatingIngredients ({ newIngredients, dish_id, ingredientRepository }) {
+async function isItUpdatingIngredients ({ newIngredients, dish_id, ingredientRepository }) {
     const currentIngredients = await ingredientRepository.getByDishId({ dish_id })
     
-    newIngredients.map( ingredient => {
+    const value = newIngredients.map( ingredient => {
         if ( !currentIngredients.includes(ingredient.trim().toLowerCase()) ) {
             return true
         }
     })
+
+    if (value.includes(true)) return true
     return false
 }

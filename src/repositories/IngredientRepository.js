@@ -12,7 +12,7 @@ class IngredientRepository {
   }
 
   async getByDishId({ dish_id }) {
-    const ingredients = await knex('ingredients').select(['name']).where({dish_id}).orderBy("name")
+    const ingredients = (await knex('ingredients').where({dish_id}).orderBy("name")).map( ingredient => ingredient.name )
     return ingredients
   }
 
