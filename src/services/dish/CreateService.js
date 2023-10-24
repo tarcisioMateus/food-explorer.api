@@ -13,7 +13,9 @@ class CreateServices {
     }) {
         inputValidation({ name, description, ingredients, price, category })
 
-        const dish = await this.dishRepository.create({ name, description, price, category }) 
+        const dish = await this.dishRepository.create({ 
+          name: name.trim().toLowerCase(), description: description.trim().toLowerCase(), price, category 
+        }) 
 
         if (ingredients.length) {
             await this.ingredientRepository.create({ ingredients, dish_id: dish.id })

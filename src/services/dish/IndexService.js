@@ -15,7 +15,7 @@ class IndexServices {
                 ingredients: ingredients.split(',').map(ingredient => ingredient.trim().toLowerCase()) 
             })
         } else {
-            dishes = await this.dishRepository.getDishesByname({ name }) 
+            dishes = await this.dishRepository.getDishesByname({ name: name.trim().toLowerCase() }) 
         }
 
         return dishes

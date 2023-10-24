@@ -5,6 +5,7 @@ const CreateServices = require('../services/dish/CreateService')
 const IndexServices = require('../services/dish/IndexService')
 const ShowServices = require('../services/dish/ShowService')
 const UpdateServices = require('../services/dish/UpdateService')
+const DeleteServices = require('../services/dish/DeleteService')
 
 class DishsController {
 
@@ -16,7 +17,7 @@ class DishsController {
             ingredientRepository: new IngredientRepository() 
         })
         const dish = await createServices.execute({ 
-            name: name.toLowerCase(), description: description.toLowerCase(), ingredients, price, category 
+            name, description, ingredients, price, category 
         })
 
         return response.status(201).json(dish)
@@ -28,7 +29,7 @@ class DishsController {
         const indexServices = new IndexServices({
             dishRepository: new DishRepository()
         })
-        const dishes = await indexServices.execute({ name: name.toLowerCase(), ingredients })
+        const dishes = await indexServices.execute({ name, ingredients })
 
         return response.status(200).json(dishes)
     }
@@ -54,6 +55,17 @@ class DishsController {
             ingredientRepository: new IngredientRepository(),
         })
         await updateServices.execute({ name, description, ingredients, price, category, id })
+
+        return response.status(200).json()
+    }
+
+    async delete (request, response) {
+        const { id } = request.params
+
+        const deleteServices = new DeleteServices({
+            dishRepository: new DishRepository()
+        })
+        await deleteServices.execute({ id })
 
         return response.status(200).json()
     }

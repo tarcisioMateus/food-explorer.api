@@ -22,7 +22,11 @@ class UpdateServices {
             await this.ingredientRepository.create({ ingredients, dish_id: id })
         }
 
-        const dish = { name, description, price, category}
+        const dish = { 
+            name: name.trim().toLowerCase(), 
+            description: description.trim().toLowerCase(), 
+            price, category
+        }
         const updated = await this.dishRepository.update({ id, dish }) 
 
         return updated
