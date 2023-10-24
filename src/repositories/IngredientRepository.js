@@ -1,6 +1,7 @@
 const knex = require('../database/knex')
 
 class IngredientRepository {
+  
   async create({ ingredients, dish_id }) {
     const ingredientsInfo = ingredients.map(ingredient => {
       return {
