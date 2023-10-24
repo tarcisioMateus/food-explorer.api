@@ -49,8 +49,9 @@ class DishRepository {
     async update ({ id, dish }) {
         const updated = await knex('dishes').where({ id }).update({ 
             name: dish.name, description: dish.description, 
-            price: dish.price, category: dish.category, updated_at: knex.fn.now() 
-        }, ['name', 'description', 'price', 'category'])
+            avatar: dish.avatar, price: dish.price, 
+            category: dish.category, updated_at: knex.fn.now() 
+        }, ['name', 'description', 'avatar', 'price', 'category'])
 
         return updated
     }
