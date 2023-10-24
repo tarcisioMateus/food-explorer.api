@@ -15,7 +15,7 @@ class DishesAvatarController {
         })
         const dish = await updateServices.execute({ id: dish_id, avatarFileName })
 
-        return response.status(200).json()
+        return response.status(200).json(dish)
     }
 }
 
