@@ -1,5 +1,3 @@
-const AppError = require("../../../utils/AppError")
-
 class UpdateServices {
     constructor({ 
         dishRepository, diskStorage 
