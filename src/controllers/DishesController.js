@@ -8,13 +8,15 @@ const ShowServices = require('../services/dish/ShowService')
 class DishsController {
 
     async create (request, response) {
-        const { name, description, ingredients, price, category, avatar } = request.body
+        const { name, description, ingredients, price, category } = request.body
 
         const createServices = new CreateServices({ 
             dishRepository: new DishRepository(), 
             ingredientRepository: new IngredientRepository() 
         })
-        const dish = await createServices.execute({ name, description, ingredients, price, category, avatar })
+        const dish = await createServices.execute({ 
+            name: name.toLowerCase(), description: description.toLowerCase(), ingredients, price, category 
+        })
 
         return response.status(201).json(dish)
     }
@@ -25,7 +27,7 @@ class DishsController {
         const indexServices = new IndexServices({
             dishRepository: new DishRepository()
         })
-        const dishes = await indexServices.execute({ name, ingredients })
+        const dishes = await indexServices.execute({ name: name.toLowerCase(), ingredients })
 
         return response.status(200).json(dishes)
     }

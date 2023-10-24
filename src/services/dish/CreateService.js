@@ -9,11 +9,11 @@ class CreateServices {
     }
 
     async execute({ 
-        name, description, ingredients, price, category, avatar 
+        name, description, ingredients, price, category 
     }) {
-        inputValidation( name, description, ingredients, price, category, avatar )
+        inputValidation({ name, description, ingredients, price, category })
 
-        const dish = await this.dishRepository.create({ name, description, price, avatar, category }) 
+        const dish = await this.dishRepository.create({ name, description, price, category }) 
 
         if (ingredients.length) {
             await this.ingredientRepository.create({ ingredients, dish_id: dish.id })
@@ -25,8 +25,8 @@ class CreateServices {
 
 module.exports = CreateServices
 
-function inputValidation ( name, description, ingredients, price, category, avatar  ) {
-  if (!name || !description || !ingredients.length || !price || !category || !avatar ) {
+function inputValidation ({ name, description, ingredients, price, category }) {
+  if (!name || !description || !ingredients.length || !price || !category ) {
     throw new AppError("Fill in all fields.")
   }
   if ( !( /R\$[\t ]*((\d{1,3}\.?)+(,\d{2}))/.test(price) ) ) {

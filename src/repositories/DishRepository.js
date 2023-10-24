@@ -1,9 +1,9 @@
 const knex = require('../database/knex')
 
 class DishRepository {
-    async create({ name, description, price, avatar, category }) {
+    async create({ name, description, price, category }) {
         const [ id ] = await knex('dishes').insert({ 
-            name, description, price, avatar, category 
+            name, description, price, category 
         })
         return { id }
     }
@@ -44,6 +44,15 @@ class DishRepository {
 
     async delete({ id }) {
         await knex('dishes').where({ id }).delete()
+    }
+
+    async update ({ id, dish }) {
+        const updated = await knex('dishes').where({ id }).update({ 
+            name: dish.name, description: dish.description, 
+            price: dish.price, category: dish.category, updated_at: knex.fn.now() 
+        }, ['name', 'description', 'price', 'category'])
+
+        return updated
     }
 }
 
