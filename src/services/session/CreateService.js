@@ -27,6 +27,7 @@ class CreateServices {
         expiresIn
         })
 
+        delete user.password
         return { token, user }
     }
 }

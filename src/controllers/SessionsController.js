@@ -10,9 +10,15 @@ class SessionsController {
     const createServices = new CreateServices({
       userRepository: new UserRepository()
     })
-    const data = await createServices.execute({ email, password })
+    const { token, user } = await createServices.execute({ email, password })
 
-    return response.json(data)
+    response.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      maxAge: 15 * 60 * 1000
+    })
+    return response.status(201).json({user})
   }
 }
 

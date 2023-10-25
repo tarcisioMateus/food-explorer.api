@@ -3,10 +3,10 @@ const { verify } = require('jsonwebtoken')
 const AppError = require('../utils/AppError')
 
 function ensureAuthenticated (request, response, next) {
-    const authHeader = request.headers.authorization
+    const { cookie } = request.headers
 
-    if (!authHeader) throw new AppError('jwt not informed', 401)
-    const [, token] = authHeader.split(' ')
+    if (!cookie) throw new AppError('jwt not informed', 401)
+    const [, token] = cookie.split('token=')
 
     try {
         const { role, sub: user_id } = verify(token, authConfig.jwt.secret)

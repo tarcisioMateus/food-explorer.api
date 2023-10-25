@@ -1,6 +1,9 @@
 require('express-async-errors')
 
 const express = require('express')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+
 const routes = require('./routes')
 const AppError = require('./utils/AppError')
 const uploadConfig = require('./configs/upload')
@@ -8,6 +11,11 @@ const uploadConfig = require('./configs/upload')
 
 const app = express()
 app.use(express.json())
+app.use(cookieParser())
+app.use(cors({
+    origin: ["https://fcnyrg-3333.csb.app"],
+    credentials: true
+}))
 
 app.use('/files', express.static(uploadConfig.UPLOADS_FOLDER))
 app.use(routes)
