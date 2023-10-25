@@ -9,7 +9,7 @@ const ShowServices = require('../services/dish/ShowService')
 const UpdateServices = require('../services/dish/UpdateService')
 const DeleteServices = require('../services/dish/DeleteService')
 
-class DishsController {
+class DishesController {
 
     async create (request, response) {
         const { name, description, ingredients, price, category } = request.body
@@ -74,4 +74,4 @@ class DishsController {
     }
 }
 
-module.exports = DishsController
+module.exports = DishesController
