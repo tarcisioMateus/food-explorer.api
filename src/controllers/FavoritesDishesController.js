@@ -6,7 +6,7 @@ const IndexDataServices = require('../services/favorite/dish/IndexDataService')
 class FavoritesDishesController {
 
   async indexId (request, response) {
-    const { user_id } = request.user.id
+    const user_id = request.user.id
 
     const indexIdServices = new IndexIdServices({ 
       favoriteRepository: new FavoriteRepository()
@@ -17,7 +17,7 @@ class FavoritesDishesController {
   }
 
   async indexData (request, response) {
-    const { user_id } = request.user.id
+    const user_id = request.user.id
 
     const indexDataServices = new IndexDataServices({ 
       favoriteRepository: new FavoriteRepository()

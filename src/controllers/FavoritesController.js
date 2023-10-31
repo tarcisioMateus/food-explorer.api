@@ -6,7 +6,7 @@ const DeleteServices = require('../services/favorite/DeleteService')
 class FavoritesController {
 
   async create (request, response) {
-    const { user_id } = request.user.id
+    const user_id = request.user.id
     const { dish_id } = request.params
 
     const createServices = new CreateServices({ 
@@ -18,7 +18,7 @@ class FavoritesController {
   }
 
   async delete (request, response) {
-    const { user_id } = request.user.id
+    const user_id = request.user.id
     const { dish_id } = request.params
 
     const deleteServices = new DeleteServices({
