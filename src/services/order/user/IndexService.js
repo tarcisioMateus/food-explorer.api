@@ -6,7 +6,7 @@ class IndexServices {
   }
 
   async execute({ user_id }) {
-      const user_orders = await this.orderRepository.getById({ user_id })
+      const user_orders = await this.orderRepository.getUserOrders({ user_id })
 
       return user_orders
   }
