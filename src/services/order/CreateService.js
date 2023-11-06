@@ -1,4 +1,4 @@
-class CreateService {
+class CreateServices {
   constructor({ 
     orderRepository 
   }) {
@@ -12,4 +12,4 @@ class CreateService {
   }
 }
 
-module.exports = CreateService
+module.exports = CreateServices
