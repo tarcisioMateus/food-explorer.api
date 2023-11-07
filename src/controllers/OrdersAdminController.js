@@ -23,7 +23,7 @@ class OrdersAdminController {
     const orders = await indexServices.execute()
 
     return response.status(200).json(orders)
-}
+  }
 }
 
 module.exports = OrdersAdminController
