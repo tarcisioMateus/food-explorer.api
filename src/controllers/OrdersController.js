@@ -26,7 +26,7 @@ class OrdersController {
     const orders = await indexServices.execute({ user_id })
 
     return response.status(200).json(orders)
-}
+  }
 }
 
 module.exports = OrdersController
