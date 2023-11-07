@@ -17,17 +17,6 @@ class OrderRepository {
     return orders
   }
 
-  async makeDescriptionReadable({ description }) {
-
-    let readableDescription = ''
-    for (dish_id in description) {
-      const { name } = await knex('dishes').where({ id: dish_id }).first()
-      const amount = description[dish_id]
-      readableDescription = readableDescription + `${amount} x ${name}, `
-    }
-    return readableDescription.slice(0, -2)
-  }
-
   async getAllOrders() {
     const orders = await knex('order').orderBy('created_at')
     for (let index in orders) {
@@ -46,3 +35,14 @@ class OrderRepository {
 }
 
 module.exports = OrderRepository
+
+async function makeDescriptionReadable({ description }) {
+
+  let readableDescription = ''
+  for (dish_id in description) {
+    const { name } = await knex('dishes').where({ id: dish_id }).first()
+    const amount = description[dish_id]
+    readableDescription = readableDescription + `${amount} x ${name}, `
+  }
+  return readableDescription.slice(0, -2)
+}
