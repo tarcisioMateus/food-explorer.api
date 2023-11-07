@@ -10,5 +10,6 @@ const ordersRoutes = Router()
 ordersRoutes.use(ensureAuthenticated)
 
 ordersRoutes.post('/', ordersController.create)
+ordersRoutes.get('/', ordersController.index)
 
 module.exports = ordersRoutes
