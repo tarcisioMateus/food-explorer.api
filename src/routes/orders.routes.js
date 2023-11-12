@@ -13,5 +13,6 @@ ordersRoutes.use(ensureAuthenticated)
 ordersRoutes.use('/admin', ordersAdminRoutes)
 ordersRoutes.post('/', ordersController.create)
 ordersRoutes.get('/', ordersController.index)
+ordersRoutes.get('/:id', ordersController.show)
 
 module.exports = ordersRoutes

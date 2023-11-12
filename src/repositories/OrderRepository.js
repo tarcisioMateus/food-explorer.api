@@ -8,6 +8,11 @@ class OrderRepository {
     return { id }
   }
 
+  async getById({ id }) {
+    const order = await knex('order').where({ id }).first()
+    return order
+  }
+
   async getUserOrders({ user_id }) {
     const orders = await knex('order').where({ user_id })
     for (let index in orders) {
