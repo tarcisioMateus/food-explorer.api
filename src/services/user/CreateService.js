@@ -13,9 +13,9 @@ class CreateServices {
             throw new AppError("Email unavailable! ")
         }
 
-        const cryptedPassword = await hash(password, 8)
+        const encryptedPassword = await hash(password, 8)
 
-        const user = await this.userRepository.create({ name, email, password: cryptedPassword }) 
+        const user = await this.userRepository.create({ name, email, password: encryptedPassword }) 
 
         return user
     }
