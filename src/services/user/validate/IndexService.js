@@ -11,7 +11,7 @@ class IndexServices {
     if (!user) {
       throw new AppError("session inspired", 401)
     }
-    return user
+    return
   }
 }
 
