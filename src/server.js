@@ -14,7 +14,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: ["https://foodexplorer-api-aflp.onrender.com", "http://localhost:5173"],
+    origin: ["https://foodexplorer-api-aflp.onrender.com", "https://foodexplorerweb.netlify.app"],
     credentials: true
 }))
 
